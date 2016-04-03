@@ -40,7 +40,9 @@ while (True):
 				field.moveTiles(1,0)
 	if (pygame.mouse.get_pressed()[0]==True and current-last > 1000):
 		if (field.checkNewGame()):
+			highscore = field.highscore
 			field = Field()
+			field.highscore = highscore
 			last = pygame.time.get_ticks()
 	field.checkGameOver()
 	pygame.display.update()
