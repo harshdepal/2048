@@ -50,8 +50,8 @@ class Field:
 			for j in range (4):
 				self.__block[i][j].display(window,topx+tileMargin+i*(tileMargin+tileSize),topy+tileMargin+j*(tileMargin+tileSize))
 		
-		headColor,htopx,htopy = (119,110,101),50,25
-		myFont = pygame.font.Font(None,90)
+		headColor,htopx,htopy = (119,110,101),100,25
+		myFont = pygame.font.Font(None,75)
 		head2048 = myFont.render(self.message,True,headColor,WHITE)
 		headRect = head2048.get_rect()
 		headRect.topleft = (htopx,htopy)
@@ -87,7 +87,7 @@ class Field:
 		window.blit(tbstText,tbstRect)
 		window.blit(bestText,bestRect)
 
-		btopx,btopy,bColor = 425,100,(130,102,68)
+		btopx,btopy,bColor = 490,100,(130,102,68)
 		buttonFont = pygame.font.Font(None,30)
 		buttonText = buttonFont.render("New Game",True,WHITE,bColor)
 		bwidth,bheight = buttonFont.size("New Game")
@@ -190,7 +190,7 @@ class Field:
 
 	def checkNewGame(self):
 		posx,posy = pygame.mouse.get_pos()
-		btopx,btopy,bbotx,bboty = 425,100,545,138
+		btopx,btopy,bbotx,bboty = 490,100,610,238
 		if (posx>=btopx and posx<=bbotx and posy>= btopy and posy<=bboty):
 			return True
 
