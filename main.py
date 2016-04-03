@@ -1,7 +1,12 @@
-import pygame,sys,random
+import pygame,sys,random,pickle
 from pygame.locals import *
 from classes import Field
 
+try:
+	with open('highscore.dat','rb') as file:
+		highscore = pickle.load(file)
+except:
+	highscore = 0
 pygame.init()
 width , height = 600,700
 topx , topy = 50,150
@@ -11,6 +16,7 @@ pygame.display.set_caption("2048")
 
 
 field = Field()
+field.highscore = highscore
 while (True):
 	current = pygame.time.get_ticks()
 	if (field.moveMade and not field.gameOver):
@@ -19,6 +25,8 @@ while (True):
 	field.display(window,topx,topy)
 	for event in pygame.event.get():
 		if (event.type == QUIT):
+			with open('highscore.dat','wb') as file:
+				pickle.dump(max(field.getScore(),highscore),file)
 			pygame.quit()
 			sys.exit()
 		elif (event.type == pygame.KEYDOWN and not field.gameOver):

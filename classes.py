@@ -37,6 +37,7 @@ class Field:
 		self.generateTile()
 		self.moveMade = True
 		self.__score = 0
+		self.highscore = 0
 		self.gameOver = False
 		self.message = "2048"
 
@@ -56,7 +57,7 @@ class Field:
 		headRect.topleft = (htopx,htopy)
 		window.blit(head2048,headRect)
 
-		bgColor,tscoreColor,stopx,stopy = (187,173,160),(249,246,242),450,25
+		bgColor,tscoreColor,stopx,stopy = (187,173,160),(249,246,242),375,25
 		scoreFont = pygame.font.Font(None,24)
 		scoreText = scoreFont.render(str(self.__score),True,WHITE,bgColor)
 		tscoreFont = pygame.font.Font(None,24)
@@ -71,6 +72,20 @@ class Field:
 		pygame.draw.rect(window,bgColor,(stopx,stopy,width+10,height+10))
 		window.blit(scoreText,scoreRect)
 		window.blit(tscoreText,tscoreRect)
+
+		bstx,bsty = 475,25
+		bestText = scoreFont.render(str(self.highscore),True,WHITE,bgColor)
+		bestRect = bestText.get_rect()
+		bwidth,bheight = scoreFont.size(str(self.highscore))
+		tbstText = tscoreFont.render("BEST",True,tscoreColor,bgColor)
+		tbstRect = tbstText.get_rect()
+		tbwidth,tbheight = tscoreFont.size("BEST")
+		mwidth,mheight = (max(bwidth,tbwidth),bheight+tbheight)
+		tbstRect.topleft = (bstx+mwidth/2-tbwidth/2+5,bsty+5)
+		bestRect.topleft = (bstx+mwidth/2-bwidth/2+5,bsty+tbheight+5)
+		pygame.draw.rect(window,bgColor,(bstx,bsty,mwidth+10,mheight+10))
+		window.blit(tbstText,tbstRect)
+		window.blit(bestText,bestRect)
 
 		btopx,btopy,bColor = 425,100,(130,102,68)
 		buttonFont = pygame.font.Font(None,30)
@@ -177,3 +192,6 @@ class Field:
 		btopx,btopy,bbotx,bboty = 425,100,545,138
 		if (posx>=btopx and posx<=bbotx and posy>= btopy and posy<=bboty):
 			return True
+
+	def getScore(self):
+		return self.__score
