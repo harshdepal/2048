@@ -57,7 +57,7 @@ class Field:
 		headRect.topleft = (htopx,htopy)
 		window.blit(head2048,headRect)
 
-		bgColor,tscoreColor,stopx,stopy = (187,173,160),(249,246,242),375,25
+		bgColor,tscoreColor,stopx,stopy = (187,173,160),(249,246,242),450,25
 		scoreFont = pygame.font.Font(None,24)
 		scoreText = scoreFont.render(str(self.__score),True,WHITE,bgColor)
 		tscoreFont = pygame.font.Font(None,24)
@@ -73,7 +73,7 @@ class Field:
 		window.blit(scoreText,scoreRect)
 		window.blit(tscoreText,tscoreRect)
 
-		bstx,bsty = 475,25
+		bstx,bsty = 550,25
 		bestText = scoreFont.render(str(self.highscore),True,WHITE,bgColor)
 		bestRect = bestText.get_rect()
 		bwidth,bheight = scoreFont.size(str(self.highscore))

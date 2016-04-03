@@ -8,8 +8,8 @@ try:
 except:
 	highscore = 0
 pygame.init()
-width , height = 600,700
-topx , topy = 50,150
+width , height = 700,700
+topx , topy = 100,150
 last = pygame.time.get_ticks()
 window = pygame.display.set_mode((width,height))
 pygame.display.set_caption("2048")
@@ -26,7 +26,7 @@ while (True):
 	for event in pygame.event.get():
 		if (event.type == QUIT):
 			with open('highscore.dat','wb') as file:
-				pickle.dump(max(field.getScore(),highscore),file)
+				pickle.dump(highscore,file)
 			pygame.quit()
 			sys.exit()
 		elif (event.type == pygame.KEYDOWN and not field.gameOver):
