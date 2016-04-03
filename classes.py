@@ -145,6 +145,7 @@ class Field:
 						self.__block[nx][ny].value = 2*self.__block[i][j].value
 						self.__block[i][j].value = 0
 						self.__score = self.__score + self.__block[nx][ny].value
+						self.highscore = max(self.highscore,self.__score)
 						self.moveMade = True
 		for i in range (startx,endx,stepx):
 			for j in range (starty,endy,stepy):
